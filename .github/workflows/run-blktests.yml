@@ -18,7 +18,7 @@ env:
 jobs:
   build-and-test-kernel:
     #This step runs in a container in the k8s cluster 
-    runs-on: arc-vm-shinichiro-linux-block
+    runs-on: arc-vm-linux-blktests
     steps:
       - name: Checkout blktests-ci
         uses: actions/checkout@v4
