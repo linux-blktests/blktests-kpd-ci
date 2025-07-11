@@ -70,8 +70,20 @@ jobs:
             f2fs-tools \
             btrfs-progs \
             device-mapper-multipath \
+            blktrace \
+            kernel-headers \
+            liburing \
+            liburing-devel \
             nbd \
             device-mapper \
+            ktls-utils \
+            dosfstools \
+            mdadm \
+            bc \
+            libnl3-cli \
+            cryptsetup \
+            sg3_utils \
+            pciutils \
             unzip \
             jq \
             nvme-cli \
