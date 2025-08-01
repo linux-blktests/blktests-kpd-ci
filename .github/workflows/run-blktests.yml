@@ -9,6 +9,9 @@ name: Run blktests
 on:
   pull_request:
 
+concurrency:
+  group: ci-test-${{ github.ref_name }}
+
 env:
   KERNEL_REF: "${{ github.event.pull_request.head.sha }}"
   KERNEL_TREE: "https://github.com/${{ github.repository }}"
