@@ -97,6 +97,7 @@ jobs:
             git clone https://github.com/linux-blktests/blktests.git
 
             cd blktests
+            git checkout ci
             make
 
             #ATTENTION! This section formats all available NVMe devices. Be careful when changing the `runs-on` tag!
