@@ -129,6 +129,8 @@ jobs:
             EOF
             sudo ./check nvme || failed=1
             test -f results/failures && cat results/failures >> results/all_failures
+            ls results/failures
+            ls results/all_failrues
 
             # Run blktests scsi group
             cat > config << EOF
@@ -169,6 +171,10 @@ jobs:
             EOF
             sudo ./check srp || failed=1
             test -f results/failures && cat results/failures >> results/all_failures
+
+            ls results
+            ls results/failures
+            ls results/all_failures
 
             test -f results/all_failures && echo "All Failures:" && cat results/all_failures 
 
