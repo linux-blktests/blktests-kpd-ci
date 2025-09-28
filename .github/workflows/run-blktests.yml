@@ -112,7 +112,7 @@ jobs:
             #This step runs in a VM with the previously compiled kernel in the k8s cluster
 
             failed=0
-            rm -f results/all_failures
+            rm -f all_failures
 
             # Run blktests block group
             cat > config << EOF
@@ -120,7 +120,7 @@ jobs:
             EOF
             export RUN_ZONED_TESTS=1
             sudo ./check block || failed=1
-            test -f results/failures && cat results/failures >> results/all_failures
+            test -f results/failures && cat results/failures >> all_failures
 
             # Run blktests nvme group
             cat > config << EOF
@@ -128,7 +128,7 @@ jobs:
             NVMET_TRTYPES="loop rdma tcp"
             EOF
             sudo ./check nvme || failed=1
-            test -f results/failures && cat results/failures >> results/all_failures
+            test -f results/failures && cat results/failures >> all_failures
             ls results/failures
             ls results/all_failrues
 
@@ -138,14 +138,14 @@ jobs:
             export RUN_ZONED_TESTS=1
             EOF
             sudo ./check scsi || failed=1
-            test -f results/failures && cat results/failures >> results/all_failures
+            test -f results/failures && cat results/failures >> all_failures
 
             # Run blktests misc groups
             cat > config << EOF
             TEST_DEVS=()
             EOF
             sudo ./check dm loop md nbd throtl ublk || failed=1
-            test -f results/failures && cat results/failures >> results/all_failures
+            test -f results/failures && cat results/failures >> all_failures
 
             # Run ZBD blktests without TEST_DEVS
             cat > config << EOF
@@ -153,7 +153,7 @@ jobs:
             EOF
             export RUN_ZONED_TESTS=1
             sudo ./check zbd || failed=1
-            test -f results/failures && cat results/failures >> results/all_failures
+            test -f results/failures && cat results/failures >> all_failures
 
             # Run ZBD blktests with TEST_DEVS
             cat > config << EOF
@@ -163,19 +163,19 @@ jobs:
 
             export RUN_ZONED_TESTS=1
             sudo ./check zbd || failed=1
-            test -f results/failures && cat results/failures >> results/all_failures
+            test -f results/failures && cat results/failures >> all_failures
 
             # Run blktests srp group
             cat > config << EOF
             TEST_DEVS=()
             EOF
             sudo ./check srp || failed=1
-            test -f results/failures && cat results/failures >> results/all_failures
+            test -f results/failures && cat results/failures >> all_failures
 
             ls results
             ls results/failures
-            ls results/all_failures
+            ls all_failures
 
-            test -f results/all_failures && echo "All Failures:" && cat results/all_failures 
+            test -f all_failures && echo "All Failures:" && cat all_failures
 
             exit $failed
