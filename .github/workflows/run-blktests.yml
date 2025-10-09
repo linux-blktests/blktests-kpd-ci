@@ -170,7 +170,10 @@ jobs:
             sudo ./check srp || failed=1
             test -f results/failures && cat results/failures >> all_failures
 
+            # Mark blktests completion for KPD report
+            echo "KPD: blktests completed"
+
             # Output failures for KPD report
-            test -f all_failures && echo "All Failures:" && cat all_failures
+            test -f all_failures && echo "KPD: Failures:" && cat all_failures
 
             exit $failed
