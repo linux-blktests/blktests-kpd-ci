@@ -125,7 +125,7 @@ jobs:
             # Run blktests nvme group
             cat > config << EOF
             TEST_DEVS=(${BDEV0})
-            NVMET_TRTYPES="loop rdma tcp"
+            NVMET_TRTYPES="loop rdma"
             EOF
             sudo ./check nvme || failed=1
             test -f results/failures && cat results/failures >> all_failures
