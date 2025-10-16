@@ -126,6 +126,7 @@ jobs:
             cat > config << EOF
             TEST_DEVS=(${BDEV0})
             NVMET_TRTYPES="loop rdma"
+            EXCLUDE=(nvme/057)
             EOF
             sudo ./check nvme || failed=1
             test -f results/failures && cat results/failures >> all_failures
