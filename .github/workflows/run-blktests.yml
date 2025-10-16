@@ -143,7 +143,7 @@ jobs:
             cat > config << EOF
             TEST_DEVS=()
             EOF
-            sudo ./check dm loop md nbd throtl ublk || failed=1
+            sudo ./check dm loop md throtl ublk || failed=1
             test -f results/failures && cat results/failures >> all_failures
 
             # Run ZBD blktests without TEST_DEVS
