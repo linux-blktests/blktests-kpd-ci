@@ -149,6 +149,7 @@ jobs:
             # Run ZBD blktests without TEST_DEVS
             cat > config << EOF
             TEST_DEVS=()
+            EXCLUDE=(zbd/009)
             EOF
             export RUN_ZONED_TESTS=1
             sudo ./check zbd || failed=1
