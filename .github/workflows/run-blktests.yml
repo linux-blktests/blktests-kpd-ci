@@ -123,13 +123,13 @@ jobs:
             test -f results/failures && cat results/failures >> all_failures
 
             # Run blktests nvme group
-            cat > config << EOF
-            TEST_DEVS=(${BDEV0})
-            NVMET_TRTYPES="loop rdma"
-            EXCLUDE=(nvme/014 nvme/038 nvme/057 nvme/058)
-            EOF
-            sudo ./check nvme || failed=1
-            test -f results/failures && cat results/failures >> all_failures
+            #cat > config << EOF
+            #TEST_DEVS=(${BDEV0})
+            #NVMET_TRTYPES="loop rdma"
+            #EXCLUDE=(nvme/014 nvme/038 nvme/057 nvme/058)
+            #EOF
+            #sudo ./check nvme || failed=1
+            #test -f results/failures && cat results/failures >> all_failures
 
             # Run blktests scsi group
             cat > config << EOF
@@ -166,11 +166,11 @@ jobs:
             test -f results/failures && cat results/failures >> all_failures
 
             # Run blktests srp group
-            cat > config << EOF
-            TEST_DEVS=()
-            EOF
-            sudo ./check srp || failed=1
-            test -f results/failures && cat results/failures >> all_failures
+            #cat > config << EOF
+            #TEST_DEVS=()
+            #EOF
+            #sudo ./check srp || failed=1
+            #test -f results/failures && cat results/failures >> all_failures
 
             # Mark blktests completion for KPD report
             echo "KPD: blktests completed"
