@@ -178,4 +178,5 @@ jobs:
             # Output failures for KPD report
             test -f all_failures && echo "KPD: Failures:" && cat all_failures
 
+            echo "KPD: blktests status: ${failed}"
             exit $failed
