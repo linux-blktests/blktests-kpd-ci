@@ -122,13 +122,12 @@ jobs:
             test -f results/failures && cat results/failures >> all_failures
 
             # Run blktests nvme group
-            #cat > config << EOF
-            #TEST_DEVS=(${BDEV0})
-            #NVMET_TRTYPES="loop rdma"
-            #EXCLUDE=(nvme/014 nvme/038 nvme/057 nvme/058)
-            #EOF
-            #sudo ./check nvme
-            #test -f results/failures && cat results/failures >> all_failures
+            cat > config << EOF
+            TEST_DEVS=(${BDEV0})
+            NVMET_TRTYPES="loop rdma"
+            EOF
+            sudo ./check nvme
+            test -f results/failures && cat results/failures >> all_failures
 
             # Run blktests scsi group
             cat > config << EOF
