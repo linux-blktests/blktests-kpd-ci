@@ -111,63 +111,7 @@ jobs:
             #ATTENTION! This section formats all available NVMe devices. Be careful when changing the `runs-on` tag!
             #This step runs in a VM with the previously compiled kernel in the k8s cluster
 
-            rm -f all_failures
-
-            # Run blktests block group
-            cat > config << EOF
-            TEST_DEVS=(${BDEV0})
-            EOF
-            export RUN_ZONED_TESTS=1
-            sudo ./check block
-            test -f results/failures && cat results/failures >> all_failures
-
-            # Run blktests nvme group
-            cat > config << EOF
-            TEST_DEVS=(${BDEV0})
-            NVMET_TRTYPES="loop rdma"
-            EOF
-            sudo ./check nvme
-            test -f results/failures && cat results/failures >> all_failures
-
-            # Run blktests scsi group
-            cat > config << EOF
-            TEST_DEVS=()
-            export RUN_ZONED_TESTS=1
-            EOF
-            sudo ./check scsi
-            test -f results/failures && cat results/failures >> all_failures
-
-            # Run blktests misc groups
-            cat > config << EOF
-            TEST_DEVS=()
-            EOF
-            sudo ./check dm loop md throtl ublk
-            test -f results/failures && cat results/failures >> all_failures
-
-            # Run ZBD blktests without TEST_DEVS
-            cat > config << EOF
-            TEST_DEVS=()
-            EOF
-            export RUN_ZONED_TESTS=1
-            sudo ./check zbd
-            test -f results/failures && cat results/failures >> all_failures
-
-            # Run ZBD blktests with TEST_DEVS
-            cat > config << EOF
-            TEST_DEVS=(${ZBD0})
-            DEVICE_ONLY=1
-            EOF
-
-            export RUN_ZONED_TESTS=1
-            sudo ./check zbd
-            test -f results/failures && cat results/failures >> all_failures
-
-            # Run blktests srp group
-            #cat > config << EOF
-            #TEST_DEVS=()
-            #EOF
-            #sudo ./check srp
-            #test -f results/failures && cat results/failures >> all_failures
+            ./contrib/run_ci https://github.com/linux-blktests/blktests-ci-conditions/raw/main
 
             # Mark blktests completion for KPD report
             echo "KPD: blktests completed"
