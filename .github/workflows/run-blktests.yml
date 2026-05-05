@@ -48,6 +48,7 @@ jobs:
       - name: Run in VM
         uses: ./blktests-ci/.github/actions/kubevirt-action
         with:
+          host_devices: "nvme-wdc-zn540,nvme-wdc-sn640"
           kernel_version: ${{ env.KERNEL_VERSION }}
           vm_artifact_upload_dir: blktests/results
           run_cmds: |
