@@ -21,7 +21,7 @@ env:
 jobs:
   build-and-test-kernel:
     #This step runs in a container in the k8s cluster 
-    runs-on: arc-vm-linux-block
+    runs-on: arc-vm-linux-block-trial
     steps:
       - name: Checkout blktests-ci
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
@@ -51,7 +51,6 @@ jobs:
       - name: Run in VM
         uses: ./blktests-ci/.github/actions/kubevirt-action
         with:
-          host_devices: "nvme-wdc-zn540,nvme-wdc-sn640"
           container_disk_image: ghcr.io/linux-nvme/blktests-fedora-containerdisk:latest
           kernel_version: ${{ env.KERNEL_VERSION }}
           vm_artifact_upload_dir: blktests/results
@@ -77,7 +76,7 @@ jobs:
             #ATTENTION! This section formats all available NVMe devices. Be careful when changing the `runs-on` tag!
             #This step runs in a VM with the previously compiled kernel in the k8s cluster
 
-            ./contrib/run_ci https://github.com/linux-blktests/blktests-ci-conditions/raw/main || exit 1
+            ./contrib/run_ci https://github.com/linux-blktests/blktests-ci-conditions/raw/block-trial || exit 1
 
             # Mark blktests completion for KPD report
             echo "KPD: blktests completed"
