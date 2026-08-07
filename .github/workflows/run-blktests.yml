@@ -35,6 +35,9 @@ jobs:
           docker build \
             --build-arg KERNEL_TREE=${KERNEL_TREE} \
             --build-arg KERNEL_REF=${KERNEL_REF} \
+            --build-arg http_proxy \
+            --build-arg https_proxy \
+            --build-arg no_proxy \
             -t linux-kernel-containerdisk \
             -f Dockerfile.linux-kernel-containerdisk . 2>&1 | tee build.log
           #Setting KERNEL_VERSION var which is latern needed for notifying the VM what kernel to pick up
