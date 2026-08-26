@@ -120,7 +120,7 @@ jobs:
             echo "KPD: blktests completed"
 
             # Output failures for KPD report
-            test -f all_failures && echo "KPD: Failures:" && cat all_failures
+            test -f all_failures && echo "KPD: Failures:" && cat all_failures && echo -e "\nKPD: Failures end"
 
             test -f all_failures && exit 1
             exit 0
