@@ -115,7 +115,7 @@ jobs:
             #ATTENTION! This section formats all available NVMe devices. Be careful when changing the `runs-on` tag!
             #This step runs in a VM with the previously compiled kernel in the k8s cluster
 
-            ./contrib/run_ci https://github.com/linux-blktests/blktests-ci-conditions/raw/main
+            ./contrib/run_ci https://github.com/linux-blktests/blktests-ci-conditions/raw/nvme
 
             # Mark blktests completion for KPD report
             echo "KPD: blktests completed"
