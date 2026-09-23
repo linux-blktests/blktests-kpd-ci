@@ -63,7 +63,7 @@ jobs:
 
             git clone https://git.kernel.org/pub/scm/utils/mdadm/mdadm.git
             cd mdadm
-            git checkout d764c4829947923142a83251296d04edaee7d2f7
+            git checkout mdadm-4.6
             make -j$(nproc)
             sudo make install
 
