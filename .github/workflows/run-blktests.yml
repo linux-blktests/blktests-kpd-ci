@@ -52,6 +52,7 @@ jobs:
         uses: ./blktests-ci/.github/actions/kubevirt-action
         with:
           host_devices: "nvme-wdc-zn540,nvme-wdc-sn640"
+          container_disk_image: ghcr.io/linux-nvme/blktests-fedora-containerdisk:latest
           kernel_version: ${{ env.KERNEL_VERSION }}
           vm_artifact_upload_dir: blktests/results
           run_cmds: |
@@ -59,45 +60,6 @@ jobs:
             uname -a
             cat /etc/os-release
             lsblk
-
-            #Install build dependencies for blktests
-            sudo dnf install -y gcc \
-            clang \
-            make \
-            util-linux \
-            llvm \
-            gawk \
-            fio \
-            udev \
-            kmod \
-            coreutils \
-            gcc \
-            gzip \
-            e2fsprogs \
-            xfsprogs \
-            f2fs-tools \
-            btrfs-progs \
-            device-mapper-multipath \
-            blktrace \
-            kernel-headers \
-            liburing \
-            liburing-devel \
-            nbd \
-            device-mapper \
-            ktls-utils \
-            dosfstools \
-            bc \
-            libnl3-cli \
-            cryptsetup \
-            sg3_utils \
-            pciutils \
-            unzip \
-            jq \
-            nvme-cli \
-            git \
-            wget \
-            pkgconf \
-            libudev-devel
 
             git clone https://git.kernel.org/pub/scm/utils/mdadm/mdadm.git
             cd mdadm
